@@ -1,14 +1,14 @@
-import Headers from '../../headers.js';
+import Headers from '../../../headers.js';
 
-describe('PNIN Basic Verification API', () => {
-  const apiUrl = 'https://dev-core-api-v2.blusalt.net/api/identities/ng/pnin-basic';
+describe('PNIN Verification API Tests', () => {
+  const apiUrl = 'https://dev-core-api-v2.blusalt.net/api/identities/ng/pnin';
 
   const validPayload = {
     app: "Verification App",
     phoneNumber: "08100049567"
   };
 
-  it('Should verify PNIN basic successfully with valid data', () => {
+  it('Should verify PNIN successfully with valid data', () => {
     cy.request({
       method: 'POST',
       url: apiUrl,
@@ -18,7 +18,7 @@ describe('PNIN Basic Verification API', () => {
       expect(response.status).to.eq(200);
       expect(response.body.success).to.be.true;
       expect(response.body.data).to.have.property('reference');
-      expect(response.body.data).to.have.property('results');
+      expect(response.body.data.results).to.exist;
     });
   });
 
@@ -52,8 +52,8 @@ describe('PNIN Basic Verification API', () => {
     });
   });
 
-  it('Should fail with invalid phoneNumber format', () => {
-    const payload = { ...validPayload, phoneNumber: "12345" };
+  it('Should fail for invalid phone number format', () => {
+    const payload = { ...validPayload, phoneNumber: "123" }; // too short / invalid
 
     cy.request({
       method: 'POST',
@@ -66,8 +66,8 @@ describe('PNIN Basic Verification API', () => {
     });
   });
 
-  it('Should fail when phoneNumber is not a string', () => {
-    const payload = { ...validPayload, phoneNumber: 8100049567 };
+  it('Should fail for non-string phone number', () => {
+    const payload = { ...validPayload, phoneNumber: 8100049567 }; // number instead of string
 
     cy.request({
       method: 'POST',

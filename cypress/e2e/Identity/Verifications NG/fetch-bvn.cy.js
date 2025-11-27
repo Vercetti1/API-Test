@@ -1,4 +1,4 @@
-import Headers from '../../headers.js';
+import Headers from '../../../headers.js';
 
 describe('BVN Simple Verification API Tests', () => {
   const apiUrl = 'https://dev-core-api-v2.blusalt.net/api/identities/ng/bvn';

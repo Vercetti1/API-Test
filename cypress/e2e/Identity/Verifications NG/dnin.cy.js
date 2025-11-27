@@ -1,4 +1,4 @@
-import Headers from '../../headers.js';
+import Headers from '../../../headers.js';
 
 describe('DNIN Verification API Tests', () => {
 
