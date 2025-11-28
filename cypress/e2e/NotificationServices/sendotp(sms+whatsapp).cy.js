@@ -6,7 +6,7 @@ describe('OTP Send Bundle API Tests', () => {
   const validPayload = {
     sender_id: "Blusalt",
     message: "Use code {code} to verify your subscription. It expires in 5 minutes.",
-    phone_number: "08063375775", // local format, remove '+'
+    phone_number: "+2349131135978",
     code_length: 5,
     country_code: "234"
   };

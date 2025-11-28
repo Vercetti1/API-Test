@@ -16,7 +16,7 @@ describe('Data Plans API Tests', () => {
     }).then((response) => {
       expect(response.status).to.eq(200);
       expect(response.body.success).to.be.true;
-      expect(response.body.data).to.be.an('array'); // should return list of plans
+      expect(response.body.data).to.be.an('array');
       expect(response.body.data.length).to.be.greaterThan(0);
     });
   });

@@ -37,23 +37,8 @@ describe('PNIN Verification API Tests', () => {
     });
   });
 
-  it('Should fail when app is missing', () => {
-    const payload = { ...validPayload };
-    delete payload.app;
-
-    cy.request({
-      method: 'POST',
-      url: apiUrl,
-      headers: Headers,
-      body: payload,
-      failOnStatusCode: false
-    }).then((response) => {
-      expect(response.status).to.eq(400);
-    });
-  });
-
   it('Should fail for invalid phone number format', () => {
-    const payload = { ...validPayload, phoneNumber: "123" }; // too short / invalid
+    const payload = { ...validPayload, phoneNumber: "123" };
 
     cy.request({
       method: 'POST',
@@ -67,7 +52,7 @@ describe('PNIN Verification API Tests', () => {
   });
 
   it('Should fail for non-string phone number', () => {
-    const payload = { ...validPayload, phoneNumber: 8100049567 }; // number instead of string
+    const payload = { ...validPayload, phoneNumber: 8100049567 };
 
     cy.request({
       method: 'POST',

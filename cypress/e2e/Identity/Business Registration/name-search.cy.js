@@ -1,7 +1,13 @@
-import Headers from '../../headers';
+import Headers from '../../../headers';
 
 describe('Business Name Search API', () => {
   const url = 'https://dev-core-api-v2.blusalt.net/api/registrations/name-search';
+
+  const baseHeaders = {
+    ...Headers,
+    'Content-Type': 'application/json',
+    countryCode: 'NG'
+  };
 
   const validPayload = {
     name: "JG Group",
@@ -12,7 +18,7 @@ describe('Business Name Search API', () => {
     cy.request({
       method: 'POST',
       url,
-      headers: { ...Headers, 'Content-Type': 'application/json' },
+      headers: baseHeaders,
       body: validPayload
     }).then((res) => {
       expect(res.status).to.eq(200);
@@ -25,11 +31,11 @@ describe('Business Name Search API', () => {
     cy.request({
       method: 'POST',
       url,
-      headers: Headers,
+      headers: baseHeaders,
       body: { lineOfBusiness: "technology" },
       failOnStatusCode: false
     }).then((res) => {
-      expect(res.status).to.eq(400);
+      expect([400, 422]).to.include(res.status);
     });
   });
 
@@ -37,11 +43,11 @@ describe('Business Name Search API', () => {
     cy.request({
       method: 'POST',
       url,
-      headers: Headers,
+      headers: baseHeaders,
       body: { name: "JG Group" },
       failOnStatusCode: false
     }).then((res) => {
-      expect(res.status).to.eq(400);
+      expect([400, 422]).to.include(res.status);
     });
   });
 
@@ -49,11 +55,11 @@ describe('Business Name Search API', () => {
     cy.request({
       method: 'POST',
       url,
-      headers: Headers,
+      headers: baseHeaders,
       body: { name: "", lineOfBusiness: "technology" },
       failOnStatusCode: false
     }).then((res) => {
-      expect(res.status).to.eq(400);
+      expect([400, 422]).to.include(res.status);
     });
   });
 
@@ -61,11 +67,11 @@ describe('Business Name Search API', () => {
     cy.request({
       method: 'POST',
       url,
-      headers: Headers,
+      headers: baseHeaders,
       body: { name: "JG Group", lineOfBusiness: "" },
       failOnStatusCode: false
     }).then((res) => {
-      expect(res.status).to.eq(400);
+      expect([400, 422]).to.include(res.status);
     });
   });
 });

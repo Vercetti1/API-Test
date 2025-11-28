@@ -26,7 +26,6 @@ describe('DNIN Verification API Tests', () => {
     });
   });
 
-  // ❌ Missing firstName
   it('Should fail when firstName is missing', () => {
     const payload = { ...validPayload };
     delete payload.firstName;
@@ -42,7 +41,6 @@ describe('DNIN Verification API Tests', () => {
     });
   });
 
-  // ❌ Missing lastName
   it('Should fail when lastName is missing', () => {
     const payload = { ...validPayload };
     delete payload.lastName;
@@ -58,7 +56,6 @@ describe('DNIN Verification API Tests', () => {
     });
   });
 
-  // ❌ Missing gender
   it('Should fail when gender is missing', () => {
     const payload = { ...validPayload };
     delete payload.gender;
@@ -74,7 +71,6 @@ describe('DNIN Verification API Tests', () => {
     });
   });
 
-  // ❌ Missing dateOfBirth
   it('Should fail when dateOfBirth is missing', () => {
     const payload = { ...validPayload };
     delete payload.dateOfBirth;
@@ -90,7 +86,6 @@ describe('DNIN Verification API Tests', () => {
     });
   });
 
-  // ❌ Invalid gender
   it('Should fail when gender is invalid', () => {
     const payload = { ...validPayload, gender: "unknown" };
 
@@ -102,10 +97,10 @@ describe('DNIN Verification API Tests', () => {
       failOnStatusCode: false
     }).then((response) => {
       expect(response.status).to.eq(400);
+      //returns 500 instead
     });
   });
 
-  // ❌ Invalid date format
   it('Should fail when dateOfBirth format is wrong', () => {
     const payload = { ...validPayload, dateOfBirth: "1996/05/31" };
 
@@ -117,6 +112,7 @@ describe('DNIN Verification API Tests', () => {
       failOnStatusCode: false
     }).then((response) => {
       expect(response.status).to.eq(400);
+      //returns 500 instead
     });
   });
 

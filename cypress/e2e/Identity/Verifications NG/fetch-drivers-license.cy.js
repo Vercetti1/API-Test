@@ -1,3 +1,5 @@
+import Headers from '../../../headers'
+
 describe('Driver License Verification API', () => {
   const url = 'https://dev-core-api-v2.blusalt.net/api/identities/ng/driver-license';
 
@@ -5,9 +7,7 @@ describe('Driver License Verification API', () => {
     cy.request({
       method: 'POST',
       url,
-      headers: {
-        Authorization: `Bearer ${Cypress.env('TOKEN')}`
-      },
+      headers: Headers,
       body: {
         idNumber: 'AAA00000AA00'
       }

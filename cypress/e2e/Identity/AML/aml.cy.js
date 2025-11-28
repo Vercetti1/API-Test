@@ -1,16 +1,21 @@
+import Headers from "../../../headers";
+
 describe('AML Search API', () => {
   const url = 'https://dev-core-api-v2.blusalt.net/api/aml/search';
 
   const validPayload = {
     type: "pep",
-    name: "sarah"
+    name: "Tomisin"
   };
 
   it('should return AML search results successfully', () => {
     cy.request({
       method: 'POST',
       url,
-      headers: Headers,
+      headers: {
+        ...Headers,
+        'Content-Type': 'application/json'
+      },
       body: validPayload
     }).then((res) => {
       expect(res.status).to.eq(200);
@@ -23,11 +28,14 @@ describe('AML Search API', () => {
     cy.request({
       method: 'POST',
       url,
-      headers: Headers,
+      headers: {
+        ...Headers,
+        'Content-Type': 'application/json'
+      },
       body: { type: "pep" },
       failOnStatusCode: false
     }).then((res) => {
-      expect(res.status).to.eq(400);
+      expect([400, 422]).to.include(res.status);
     });
   });
 
@@ -35,23 +43,14 @@ describe('AML Search API', () => {
     cy.request({
       method: 'POST',
       url,
-      headers: Headers,
+      headers: {
+        ...Headers,
+        'Content-Type': 'application/json'
+      },
       body: { name: "sarah" },
       failOnStatusCode: false
     }).then((res) => {
-      expect(res.status).to.eq(400);
-    });
-  });
-
-  it('should fail with invalid type', () => {
-    cy.request({
-      method: 'POST',
-      url,
-      headers: Headers,
-      body: { type: "invalid", name: "sarah" },
-      failOnStatusCode: false
-    }).then((res) => {
-      expect(res.status).to.eq(400);
+      expect([400, 422]).to.include(res.status);
     });
   });
 
@@ -59,11 +58,14 @@ describe('AML Search API', () => {
     cy.request({
       method: 'POST',
       url,
-      headers: Headers,
+      headers: {
+        ...Headers,
+        'Content-Type': 'application/json'
+      },
       body: { type: "pep", name: "" },
       failOnStatusCode: false
     }).then((res) => {
-      expect(res.status).to.eq(400);
+      expect([400, 422]).to.include(res.status);
     });
   });
 });

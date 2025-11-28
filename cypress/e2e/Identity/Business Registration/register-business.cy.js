@@ -3,6 +3,12 @@ import Headers from '../../../headers';
 describe('Business Registration API', () => {
   const url = 'https://dev-core-api-v2.blusalt.net/api/registrations/registers';
 
+  const baseHeaders = {
+    ...Headers,
+    'Content-Type': 'application/json',
+    countryCode: 'NG'
+  };
+
   const validPayload = {
     lineOfBusiness: "fashion",
     proprietorCity: "Abuja",
@@ -38,7 +44,7 @@ describe('Business Registration API', () => {
     cy.request({
       method: 'POST',
       url,
-      headers: { ...Headers, 'Content-Type': 'application/json' },
+      headers: baseHeaders,
       body: validPayload,
     }).then((response) => {
       expect(response.status).to.eq(200);
@@ -55,7 +61,7 @@ describe('Business Registration API', () => {
     cy.request({
       method: 'POST',
       url,
-      headers: Headers,
+      headers: baseHeaders,
       body: payload,
       failOnStatusCode: false
     }).then((response) => {
@@ -63,7 +69,6 @@ describe('Business Registration API', () => {
     });
   });
 
-  // 3. Missing phone number
   it('should fail when proprietorPhonenumber is missing', () => {
     const payload = { ...validPayload };
     delete payload.proprietorPhonenumber;
@@ -71,7 +76,7 @@ describe('Business Registration API', () => {
     cy.request({
       method: 'POST',
       url,
-      headers: Headers,
+      headers: baseHeaders,
       body: payload,
       failOnStatusCode: false
     }).then((response) => {
@@ -79,14 +84,13 @@ describe('Business Registration API', () => {
     });
   });
 
-  // 4. Wrong phone number format
   it('should fail for invalid phone number format', () => {
     const payload = { ...validPayload, proprietorPhonenumber: "123" };
 
     cy.request({
       method: 'POST',
       url,
-      headers: Headers,
+      headers: baseHeaders,
       body: payload,
       failOnStatusCode: false
     }).then((response) => {
@@ -94,7 +98,6 @@ describe('Business Registration API', () => {
     });
   });
 
-  // 5. Missing transactionRef
   it('should fail when transactionRef is missing', () => {
     const payload = { ...validPayload };
     delete payload.transactionRef;
@@ -102,7 +105,7 @@ describe('Business Registration API', () => {
     cy.request({
       method: 'POST',
       url,
-      headers: Headers,
+      headers: baseHeaders,
       body: payload,
       failOnStatusCode: false
     }).then((response) => {
@@ -110,7 +113,6 @@ describe('Business Registration API', () => {
     });
   });
 
-  // 6. Missing required document (passport)
   it('should fail when passport is missing', () => {
     const payload = { ...validPayload };
     delete payload.passport;
@@ -118,7 +120,7 @@ describe('Business Registration API', () => {
     cy.request({
       method: 'POST',
       url,
-      headers: Headers,
+      headers: baseHeaders,
       body: payload,
       failOnStatusCode: false
     }).then((response) => {

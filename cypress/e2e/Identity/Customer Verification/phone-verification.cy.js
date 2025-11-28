@@ -1,4 +1,4 @@
-import Headers from '../../headers';
+import Headers from '../../../headers';
 
 describe('Phone Verification API', () => {
   const url = 'https://dev-core-api-v2.blusalt.net/api/customer-verifications/ng/phone';

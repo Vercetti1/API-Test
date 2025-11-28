@@ -17,7 +17,7 @@ describe('Email API Tests - Raw JSON', () => {
       url: apiUrl,
       headers: { 
         ...Headers, 
-        'Content-Type': 'application/json' // required for raw JSON
+        'Content-Type': 'application/json'
       },
       body: validPayload
     }).then((response) => {

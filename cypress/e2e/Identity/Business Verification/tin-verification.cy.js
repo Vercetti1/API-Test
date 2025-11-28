@@ -1,4 +1,4 @@
-import Headers from '../../headers';
+import Headers from '../../../headers';
 
 describe('TIN Verification API', () => {
   const url = 'https://dev-core-api-v2.blusalt.net/api/businesses/tin-verification';

@@ -1,3 +1,5 @@
+import Headers from '../../../headers'
+
 describe('International Passport Verification API', () => {
   const url = 'https://dev-core-api-v2.blusalt.net/api/identities/ng/international-passport';
 
@@ -5,7 +7,7 @@ describe('International Passport Verification API', () => {
     cy.request({
       method: 'POST',
       url,
-      headers: { Authorization: `Bearer ${Cypress.env('TOKEN')}` },
+      headers: Headers,
       body: {
         idNumber: "A11111111",
         lastName: "Doe"

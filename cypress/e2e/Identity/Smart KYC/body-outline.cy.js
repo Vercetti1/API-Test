@@ -1,4 +1,4 @@
-import Headers from '../../headers';
+import Headers from '../../../headers';
 
 describe('Smart KYC - Body Outline API', () => {
   const url = 'https://dev-core-api-v2.blusalt.net/api/smart-kyc/body-outline';

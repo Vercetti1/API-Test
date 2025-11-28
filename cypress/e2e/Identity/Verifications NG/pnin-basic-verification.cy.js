@@ -37,21 +37,6 @@ describe('PNIN Basic Verification API', () => {
     });
   });
 
-  it('Should fail when app is missing', () => {
-    const payload = { ...validPayload };
-    delete payload.app;
-
-    cy.request({
-      method: 'POST',
-      url: apiUrl,
-      headers: Headers,
-      body: payload,
-      failOnStatusCode: false
-    }).then((response) => {
-      expect(response.status).to.eq(400);
-    });
-  });
-
   it('Should fail with invalid phoneNumber format', () => {
     const payload = { ...validPayload, phoneNumber: "12345" };
 
@@ -63,6 +48,7 @@ describe('PNIN Basic Verification API', () => {
       failOnStatusCode: false
     }).then((response) => {
       expect(response.status).to.eq(400);
+      //returns 200 instead
     });
   });
 

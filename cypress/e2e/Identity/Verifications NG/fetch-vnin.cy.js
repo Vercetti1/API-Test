@@ -1,3 +1,5 @@
+import Headers from '../../../headers'
+
 describe('VNIN Verification API', () => {
   const url = 'https://dev-core-api-v2.blusalt.net/api/identities/ng/vnin';
 
@@ -5,9 +7,7 @@ describe('VNIN Verification API', () => {
     cy.request({
       method: 'POST',
       url,
-      headers: {
-        Authorization: `Bearer ${Cypress.env('TOKEN')}`
-      },
+      headers: Headers,
       body: {
         idNumber: 'YV111111111111FY'
       }

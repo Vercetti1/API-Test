@@ -1,4 +1,4 @@
-import Headers from '../../headers';
+import Headers from '../../../headers';
 
 describe('CAC Advanced Search API', () => {
   const url = 'https://dev-core-api-v2.blusalt.net/api/businesses/cac-advanced-search';

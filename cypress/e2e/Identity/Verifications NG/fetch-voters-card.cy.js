@@ -1,9 +1,8 @@
+import Headers from '../../../headers'
+
 describe('Voters Card Verification API', () => {
   const url = 'https://dev-core-api-v2.blusalt.net/api/identities/ng/voters-card';
-  const headers = {
-    Authorization: `Bearer ${Cypress.env('TOKEN')}`,
-    'Content-Type': 'application/json'
-  };
+
 
   const validPayload = {
     idNumber: "00A0A0A000000000000"
@@ -13,7 +12,7 @@ describe('Voters Card Verification API', () => {
     cy.request({
       method: 'POST',
       url,
-      headers,
+      headers: Headers,
       body: validPayload
     }).then((res) => {
       expect(res.status).to.eq(200);
@@ -26,7 +25,7 @@ describe('Voters Card Verification API', () => {
     cy.request({
       method: 'POST',
       url,
-      headers,
+      headers: Headers,
       body: {},
       failOnStatusCode: false
     }).then((res) => {
@@ -38,7 +37,7 @@ describe('Voters Card Verification API', () => {
     cy.request({
       method: 'POST',
       url,
-      headers,
+      headers: Headers,
       body: { idNumber: "" },
       failOnStatusCode: false
     }).then((res) => {
@@ -50,7 +49,7 @@ describe('Voters Card Verification API', () => {
     cy.request({
       method: 'POST',
       url,
-      headers,
+      headers: Headers,
       body: { idNumber: "12345" },
       failOnStatusCode: false
     }).then((res) => {
@@ -62,7 +61,7 @@ describe('Voters Card Verification API', () => {
     cy.request({
       method: 'POST',
       url,
-      headers,
+      headers: Headers,
       body: { idNumber: "00A0A0A000000000999" },
       failOnStatusCode: false
     }).then((res) => {
